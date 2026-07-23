@@ -1,0 +1,58 @@
+Week 1 (Days 1–7): Foundations, no AI yet
+
+Goal: A Flask app running locally that can accept a photo upload and fake-return a response.
+
+Hemanya (lead/fullstack): Set up the Flask project structure, Git repo, PostgreSQL connection, basic routes (/, /scan, /recipes)
+Lohith (backend): Build the /scan endpoint that accepts an image upload and returns a hardcoded fake response ({"item": "banana", "freshness": 87}) — this unblocks frontend work immediately without waiting on AI integration
+Aravindhan (frontend): Plain HTML/CSS page — upload button, image preview, a results card. No JS logic yet beyond a basic fetch() call to the fake endpoint
+Sri Amrita (testing/docs): Set up the README's setup instructions for real, write a .env.example, start a simple test checklist doc (what needs testing later)
+
+End of week checkpoint: You can upload a photo in the browser and see a fake freshness result appear. This is your safety-net MVP — if nothing else works later, this still demos.
+
+Week 2 (Days 8–14): Real Vision AI
+
+Goal: Replace the fake response with a real GPT-4V/Gemini call.
+
+Lohith: Get API keys, write the actual prompt sent to the vision model, parse its response into structured JSON (item, freshness %, days left). Test with 10-15 real food photos to see how accurate/consistent it actually is
+Hemanya: Help debug integration issues, start on the Spoonacular recipe-matching call (send ingredient → get ranked recipes back)
+Aravindhan: Update frontend to show real loading states (this call takes a few seconds, unlike the fake one), handle error cases gracefully (blurry photo, no food detected)
+Sri Amrita: Start logging accuracy — for each of the 15 test photos, note what the AI got right/wrong. This becomes your "known limitations" list for the pitch, and helps you write a better prompt
+
+Risk to watch: Freshness estimation accuracy will likely be inconsistent. Don't panic — this is normal and expected. Document it, don't hide it.
+
+End of week checkpoint: Real photo → real AI freshness score → real recipe suggestions, working end to end.
+
+Week 3 (Days 15–21): Community Recipe Exchange
+
+Goal: Add the recipe-sharing feature back in, the way you and your teammate designed it.
+
+Hemanya: Design the database schema — recipes table linked to ingredient + freshness stage + optional "family recipe" tag
+Lohith: Build submission endpoint (add a recipe) and retrieval endpoint (get community recipes for a given ingredient/stage)
+Aravindhan: Build the simple submission form (ingredient dropdown, not free text — this is what keeps it from feeling like Quora) and display community recipes alongside Spoonacular results
+Sri Amrita: Start writing/collecting the 15-20 seed recipes now — you need real content before demo day so this section isn't empty. Reach out to family for actual recipes if you want the "grandma's wisdom" angle to feel genuine
+
+End of week checkpoint: Scanning a banana shows both a Spoonacular recipe and a community-submitted recipe, tagged appropriately.
+
+Week 4 (Days 22–28): Impact dashboard + polish
+
+Goal: Add the CO₂/impact tracking, and make the whole thing look finished.
+
+Hemanya: Build simple scan-history logging per user (or per session if you're skipping full auth) — track kg saved and CO₂ estimate over time
+Lohith: Add basic session handling with Flask-Login if you're doing accounts; otherwise keep it session-based for simplicity
+Aravindhan: Visual polish pass — consistent colors/spacing matching your pitch deck's purple theme, mobile-responsive check
+Sri Amrita: Full test pass on every flow (upload → scan → recipe → community → dashboard), write down every bug found
+
+End of week checkpoint: A complete, good-looking app covering every feature in your pitch deck.
+
+Week 5 (Days 29–35): Bug fixing + demo prep — no new features
+
+This is the most commonly skipped step, and the reason demos fail. No new features after this point.
+
+Fix every bug from Sri Amrita's test list, prioritizing anything that would break a live demo
+Deploy to Render and test the deployed version, not just localhost (things often break differently once deployed)
+Prepare 3-4 pre-tested demo photos that you know work well, so your live demo doesn't rely on a random fridge item behaving unpredictably
+Rehearse the full demo as a team at least 3 times, timed
+Days 36–37: Buffer + final polish
+Final rehearsal, fix anything that broke during deployment testing
+Update slides/pitch deck if anything changed since submission
+Get sleep before the actual event — an exhausted team fumbles demos more than a slightly-less-polished app does
