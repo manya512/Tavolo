@@ -70,6 +70,7 @@ flask run
  Mobile-friendly PWA
 👥 Team — SORU Investigation Squad (SIS)
 Name	Role
+
 Hemanya D	Team Leader, Fullstack
 Lohith S	Backend Developer
 Sri Amrita B	Testing & Documentation Lead
